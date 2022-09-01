@@ -59,10 +59,13 @@ function generatePassword(length, lower, upper, num, symbol) {
   for (let i = 0; i < length; i++) {
 
     // pick a random element from the array containing valid password characters
-
+    let passChar = comboArray[Math.floor(Math.random() * comboArray.length)]
+    generatedPass += passChar
     // add it to generatedPass and move on to next iteration of loop for next character
         
   }
+
+  console.log(generatedPass);
 
 }
 
@@ -103,8 +106,8 @@ function promptForChars() {
     // prompt for characters to use in password
     selectedChars.lower = confirm("do you want lowercase characters in your password?");
     selectedChars.upper = confirm("do you want uppercase characters in your password?");
-    selectedChars.num= confirm("do you want numbers in your password?");
-    selectedChars.symbol= confirm("do you want special characters in your password?");
+    selectedChars.num = confirm("do you want numbers in your password?");
+    selectedChars.symbol = confirm("do you want special characters in your password?");
 
   }
 
