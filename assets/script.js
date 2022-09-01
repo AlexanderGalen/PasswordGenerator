@@ -18,12 +18,6 @@ generateBtn.addEventListener("click", passwordPrompt);
 
 function generatePassword(length, lower, upper, num, symbol) {
 
-  console.log(length);
-  console.log(lower);
-  console.log(upper);
-  console.log(num);
-  console.log(symbol);
-
   // list of lowercase characters to randomly choose from
   let lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   
@@ -36,8 +30,40 @@ function generatePassword(length, lower, upper, num, symbol) {
   // list of symbol characters to randomly choose from
   let symbols = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "/", "]", "^", "_", "`", "{", "|", "}", "~", "]", ";"]; 
   
+  // set up a new array for combining only the types of characters that the user selected
+  let comboArray = [];
+
+  if(lower) {
+    // add lowercase array to combined array
+    comboArray = comboArray.concat(lowerCase)
+  }
+  if(upper) {
+    // add uppercase array to combined array
+    comboArray = comboArray.concat(upperCase)
+  }
+  if(num) {
+    // add numbers array to combined array
+    comboArray = comboArray.concat(numbers)
+  }
+  if(symbol) {
+    // add symbols array to combined array
+    comboArray = comboArray.concat(symbols)
+  }
+
+  console.log(comboArray);
+
+  // initialize empty password to add chars to.
+  let generatedPass = "";
   
-  
+  // loop using length to grab the correct number of characters in generated password
+  for (let i = 0; i < length; i++) {
+
+    // pick a random element from the array containing valid password characters
+
+    // add it to generatedPass and move on to next iteration of loop for next character
+        
+  }
+
 }
 
 function passwordPrompt() {
