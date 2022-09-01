@@ -4,6 +4,12 @@ const maxLength = 128;
 function passwordPrompt() {
 
   let passLength = promptForLength();
+
+  // if user clicked cancel, don't continue prompting
+  if(passLength === null) {
+    return;
+  }
+
   let passChars = promptForChars();
 
   let generatedPass = generatePassword(passLength, passChars.lower, passChars.upper, passChars.num, passChars.symbol);
@@ -18,12 +24,18 @@ function promptForLength() {
   while(passLength < minLength || passLength > maxLength) {
   // prompt for length of password, must be between preset min and max length
     passLength = prompt(`Please input desired password length. Choice must be between ${minLength} and ${maxLength}`);
+    console.log(passLength);
+    // let user click cancel to exit the prompt loop
+    if(passLength === null) {
+      return null;
+    }
+
   }
   return passLength;
 }
 
 function promptForChars() {
- 
+
   let selectedChars = {
     lower: false,
     upper: false,
