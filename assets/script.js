@@ -1,10 +1,5 @@
-// Get references to the #generate element
-let generateBtn = document.querySelector("#generate");
-
-
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", passwordPrompt);
+const minLength = 8
+const maxLength = 128;
 
 function passwordPrompt() {
 
@@ -17,13 +12,12 @@ function passwordPrompt() {
 
 }
 
-
 function promptForLength() {
   let passLength = 0;
   // keep prompting if the selected length is invalid
-  while(passLength < 1 || passLength > 128) {
-  // prompt for length of password, must be between 1-128 characters
-    passLength = prompt("Please input desired password length. Choice must be between 1 and 128");
+  while(passLength < minLength || passLength > maxLength) {
+  // prompt for length of password, must be between preset min and max length
+    passLength = prompt(`Please input desired password length. Choice must be between ${minLength} and ${maxLength}`);
   }
   return passLength;
 }
@@ -88,8 +82,6 @@ function generatePassword(length, lower, upper, num, symbol) {
     comboArray = comboArray.concat(symbols)
   }
 
-  console.log(comboArray);
-
   // initialize empty password to add chars to.
   let generatedPass = "";
   
@@ -116,5 +108,9 @@ function writePassword(password) {
 
 }
 
+// Get references to the #generate element
+let generateBtn = document.querySelector("#generate");
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", passwordPrompt);
 
