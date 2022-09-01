@@ -1,17 +1,58 @@
 // Get references to the #generate element
 let generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-function writePassword(password) {
-  // select text field for placing generated password
-  let passwordText = document.querySelector("#password");
-  // update html with generated password
-  passwordText.value = password;
 
-}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", passwordPrompt);
+
+function passwordPrompt() {
+
+  let passLength = promptForLength();
+  let passChars = promptForChars();
+
+  let generatedPass = generatePassword(passLength, passChars.lower, passChars.upper, passChars.num, passChars.symbol);
+
+  writePassword(generatedPass);
+
+}
+
+
+function promptForLength() {
+  let passLength = 0;
+  // keep prompting if the selected length is invalid
+  while(passLength < 1 || passLength > 128) {
+  // prompt for length of password, must be between 1-128 characters
+    passLength = prompt("Please input desired password length. Choice must be between 1 and 128");
+  }
+  return passLength;
+}
+
+function promptForChars() {
+ 
+  let selectedChars = {
+    lower: false,
+    upper: false,
+    num: false,
+    symbol: false,
+  };
+
+  // keep prompting if all selections are false
+  while(selectedChars.lower == false && selectedChars.upper == false && selectedChars.num == false && selectedChars.symbol == false) {
+    
+    alert("Choose which type of characters to include in your password.\nAt least one type must be selected");
+
+    // prompt for characters to use in password
+    selectedChars.lower = confirm("do you want lowercase characters in your password?");
+    selectedChars.upper = confirm("do you want uppercase characters in your password?");
+    selectedChars.num = confirm("do you want numbers in your password?");
+    selectedChars.symbol = confirm("do you want special characters in your password?");
+
+  }
+
+  return selectedChars;
+
+}
 
 function generatePassword(length, lower, upper, num, symbol) {
 
@@ -66,51 +107,14 @@ function generatePassword(length, lower, upper, num, symbol) {
 
 }
 
-function passwordPrompt() {
-
-  let passLength = promptForLength();
-  let passChars = promptForChars();
-
-  let generatedPass = generatePassword(passLength, passChars.lower, passChars.upper, passChars.num, passChars.symbol);
-
-  writePassword(generatedPass);
+// Write password to the #password input
+function writePassword(password) {
+  // select text field for placing generated password
+  let passwordText = document.querySelector("#password");
+  // update html with generated password
+  passwordText.value = password;
 
 }
 
 
-function promptForLength() {
-  let passLength = 0;
-  // keep prompting if the selected length is invalid
-  while(passLength < 1 || passLength > 128) {
-  // prompt for length of password, must be between 1-128 characters
-    passLength = prompt("Please input desired password length. Choice must be between 1 and 128");
-  }
-  return passLength;
-}
-
-function promptForChars() {
- 
-  let selectedChars = {
-    lower: false,
-    upper: false,
-    num: false,
-    symbol: false,
-  };
-
-  // keep prompting if all selections are false
-  while(selectedChars.lower == false && selectedChars.upper == false && selectedChars.num == false && selectedChars.symbol == false) {
-    
-    alert("Choose which type of characters to include in your password.\nAt least one type must be selected");
-
-    // prompt for characters to use in password
-    selectedChars.lower = confirm("do you want lowercase characters in your password?");
-    selectedChars.upper = confirm("do you want uppercase characters in your password?");
-    selectedChars.num = confirm("do you want numbers in your password?");
-    selectedChars.symbol = confirm("do you want special characters in your password?");
-
-  }
-
-  return selectedChars;
-
-}
 
