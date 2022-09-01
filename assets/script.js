@@ -25,7 +25,7 @@ function generatePassword(length, lower, upper, num, symbol) {
   let numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   
   // list of symbol characters to randomly choose from
-  let symbols = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "/", "]", "^", "_", "`", "{", "|", "}", "~", "]", ";"]; 
+  let symbols = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "`", "{", "|", "}", "~", "]", ";"]; 
   
   // set up a new array for combining only the types of characters that the user selected
   let comboArray = [];
@@ -100,7 +100,7 @@ function promptForChars() {
   // keep prompting if all selections are false
   while(selectedChars.lower == false && selectedChars.upper == false && selectedChars.num == false && selectedChars.symbol == false) {
     
-    alert("Choose which type of characters to include in your password, at least one type must be selected");
+    alert("Choose which type of characters to include in your password.\nAt least one type must be selected");
 
     // prompt for characters to use in password
     selectedChars.lower = confirm("do you want lowercase characters in your password?");
