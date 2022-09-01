@@ -1,20 +1,17 @@
-
-
 // Get references to the #generate element
 let generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
-  let password = generatePassword();
+function writePassword(password) {
+  // select text field for placing generated password
   let passwordText = document.querySelector("#password");
-
+  // update html with generated password
   passwordText.value = password;
 
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", passwordPrompt);
-
 
 function generatePassword(length, lower, upper, num, symbol) {
 
@@ -60,12 +57,12 @@ function generatePassword(length, lower, upper, num, symbol) {
 
     // pick a random element from the array containing valid password characters
     let passChar = comboArray[Math.floor(Math.random() * comboArray.length)]
-    generatedPass += passChar
     // add it to generatedPass and move on to next iteration of loop for next character
-        
+    generatedPass += passChar
+          
   }
 
-  console.log(generatedPass);
+  return generatedPass;
 
 }
 
@@ -74,7 +71,9 @@ function passwordPrompt() {
   let passLength = promptForLength();
   let passChars = promptForChars();
 
-  generatePassword(passLength, passChars.lower, passChars.upper, passChars.num, passChars.symbol);
+  let generatedPass = generatePassword(passLength, passChars.lower, passChars.upper, passChars.num, passChars.symbol);
+
+  writePassword(generatedPass);
 
 }
 
